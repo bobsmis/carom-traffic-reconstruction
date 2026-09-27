@@ -1,0 +1,31 @@
+{
+  "run": "20260927-102144",
+  "frames_per_camera": 1727,
+  "fps": 10,
+  "cameras": 10,
+  "assets": [
+    {
+      "file": "carla-20260927-102144-input.zip",
+      "bytes": 266985618,
+      "sha256": "63c4cf36105a4e6b5ddff071cb5f05901be17fdac82e2f87de38007285c765e4",
+      "files": 78
+    },
+    {
+      "file": "carla-20260927-102144-results.zip",
+      "bytes": 430979169,
+      "sha256": "816f0fd7a1f0cf05c9fbcde283d76f5d18d30809cbbb65b23996658edaa8f5bb",
+      "files": 58
+    },
+    {
+      "file": "carla-20260927-102144-truth.zip",
+      "bytes": 669915698,
+      "sha256": "0434029297481e32aaa19a447728498bd968d7dd352a8bcb376f5eaa4e6aaa21",
+      "files": 17281
+    },
+    {
+      "file": "CAROM-Studio-Windows-x64.zip",
+      "bytes": 31473798,
+      "sha256": "274628b4cc0b634c285ce66d8b86905b43acd6a172f3c9b1c39a9ade1a7f6e38"
+    }
+  ]
+}
