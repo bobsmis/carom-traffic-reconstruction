@@ -1,0 +1,29 @@
+{
+  "source_run": "carom-offline-v5-final",
+  "source_sha256": "f6106e513f8f454097c1d7160ae495bb732597e110afaa6f39034358b2cfd4a8",
+  "annotation_crop_xywh": [
+    960,
+    0,
+    960,
+    540
+  ],
+  "unity": "not_connected",
+  "accuracy_validated": false,
+  "files": {
+    "original.mp4": {
+      "frames": 240,
+      "fps": 30.0,
+      "sha256": "81f3e5ee4e570cbb07c24d778d2ebcf80ab2086e0177ae16206c4906b1da96a8"
+    },
+    "annotated.mp4": {
+      "frames": 240,
+      "fps": 30.0,
+      "sha256": "51d49620998406b1b2f785a499d5ac216844ab147ab063e3a7f6a46f36116b51"
+    },
+    "bev.mp4": {
+      "frames": 240,
+      "fps": 30.0,
+      "sha256": "fe43b39d2ac2ea899aab4aa209803978a387910dd2b463682341c0e96e23224f"
+    }
+  }
+}

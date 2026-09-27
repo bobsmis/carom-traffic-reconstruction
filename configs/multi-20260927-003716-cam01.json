@@ -1,0 +1,231 @@
+{
+  "scene_id": "multi-20260927-003716-cam01",
+  "dataset": "CARLA fixed infrastructure camera baseline",
+  "source_url": "local-simulation://multi-20260927-003716-cam01",
+  "source_sha256": "6254c69a9dfb578a452a5ea90921f3c88702a292183a7054324d6944f929dc8c",
+  "video_path": "data/carla/multi-20260927-003716-cam01/rgb.mp4",
+  "camera_id": "carla_fixed_rgb",
+  "crop": {
+    "x": 0,
+    "y": 0,
+    "width": 960,
+    "height": 540
+  },
+  "planar_calibration": {
+    "method": "carla_exact_extrinsics",
+    "intrinsic_matrix": [
+      [
+        480.00000000000006,
+        0.0,
+        480.0
+      ],
+      [
+        0.0,
+        480.00000000000006,
+        270.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "world_to_camera_cv": [
+      [
+        0.9902680516242981,
+        -0.13917335867881775,
+        -3.7252898543727042e-09,
+        8.510946989059448
+      ],
+      [
+        -0.05213525518774986,
+        -0.37096089124679565,
+        -0.9271838665008545,
+        6.8952460289001465
+      ],
+      [
+        0.12903928756713867,
+        0.9181605577468872,
+        -0.37460654973983765,
+        14.967276573181152
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "distortion": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "provenance": "CARLA simulator configuration, not surveyed real-world calibration"
+  },
+  "detector": {
+    "weights": "models/yolo11m-seg.pt",
+    "weights_url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11m-seg.pt",
+    "classes": [
+      2,
+      3,
+      5,
+      7
+    ],
+    "confidence": 0.12,
+    "image_size": 768,
+    "tracker": "configs/bytetrack_carom.yaml"
+  },
+  "measurement_region": {
+    "enabled": true,
+    "ground_polygon_m": [
+      [
+        -14.0,
+        0
+      ],
+      [
+        14.0,
+        0
+      ],
+      [
+        14.0,
+        150
+      ],
+      [
+        -14.0,
+        150
+      ]
+    ],
+    "max_camera_ground_distance_m": 180,
+    "min_bbox_width_px": 12,
+    "min_bbox_height_px": 12,
+    "min_mask_area_px": 90,
+    "pixel_noise_sigma_px": 2.0,
+    "max_projection_sigma_m": 2.5,
+    "detector_context_px": 96,
+    "note": "Flat simulated road; bounds from authored map. Pixel gates remain algorithmic."
+  },
+  "processing": {
+    "max_frames": 60,
+    "suppress_preview_overlay": false,
+    "global_tracking": {
+      "max_lost_frames": 18,
+      "max_match_distance_m": 8.0,
+      "prediction_model": "constant_velocity_kalman",
+      "id_reuse": false
+    },
+    "trajectory_min_points": 10,
+    "route_cluster_threshold_m": 3.2,
+    "output_fps": 10
+  },
+  "road_map": {
+    "lane_width_m": 3.5,
+    "visible_lane_count": 8,
+    "source": "authored OpenDRIVE",
+    "lanes": [
+      {
+        "road_id": 1,
+        "lane_id": -4,
+        "width_m": 3.5,
+        "center_lateral_m": 12.25,
+        "forward_road_xy": [
+          -0.0,
+          1.0
+        ]
+      },
+      {
+        "road_id": 1,
+        "lane_id": -3,
+        "width_m": 3.5,
+        "center_lateral_m": 8.75,
+        "forward_road_xy": [
+          -0.0,
+          1.0
+        ]
+      },
+      {
+        "road_id": 1,
+        "lane_id": -2,
+        "width_m": 3.5,
+        "center_lateral_m": 5.25,
+        "forward_road_xy": [
+          -0.0,
+          1.0
+        ]
+      },
+      {
+        "road_id": 1,
+        "lane_id": -1,
+        "width_m": 3.5,
+        "center_lateral_m": 1.75,
+        "forward_road_xy": [
+          -0.0,
+          1.0
+        ]
+      },
+      {
+        "road_id": 1,
+        "lane_id": 1,
+        "width_m": 3.5,
+        "center_lateral_m": -1.75,
+        "forward_road_xy": [
+          -8.742277657347586e-08,
+          -1.0
+        ]
+      },
+      {
+        "road_id": 1,
+        "lane_id": 2,
+        "width_m": 3.5,
+        "center_lateral_m": -5.25,
+        "forward_road_xy": [
+          -8.742277657347586e-08,
+          -1.0
+        ]
+      },
+      {
+        "road_id": 1,
+        "lane_id": 3,
+        "width_m": 3.5,
+        "center_lateral_m": -8.75,
+        "forward_road_xy": [
+          -8.742277657347586e-08,
+          -1.0
+        ]
+      },
+      {
+        "road_id": 1,
+        "lane_id": 4,
+        "width_m": 3.5,
+        "center_lateral_m": -12.25,
+        "forward_road_xy": [
+          -8.742277657347586e-08,
+          -1.0
+        ]
+      }
+    ],
+    "longitudinal_bounds_m": [
+      0,
+      150
+    ],
+    "lane_mapping_note": "Signed OpenDRIVE lane IDs from static map; no vehicle state or position snapping."
+  },
+  "display": {
+    "input_note": "USER FIXED-CAMERA SOURCE \u00b7 CLEAN PIXELS \u00b7 LOCAL INFERENCE"
+  },
+  "provenance": {
+    "llm_runtime_calls": 0,
+    "manual_vehicle_state_fields": 0,
+    "input_files_read": [
+      "rgb.mp4",
+      "calibration.json",
+      "lanes.json",
+      "road.xodr",
+      "frames.jsonl",
+      "manifest.json"
+    ],
+    "vehicle_annotations": "local YOLO only; simulator actor states and masks are evaluator-only"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "scene_id": "ua-detrac-clean-fixed-intersection",
+  "dataset": "UA-DETRAC clean fixed-camera demonstration clip",
+  "source_url": "https://www.dropbox.com/s/k00wge9exwkfxz6/ua_detrac.mp4?raw=1",
+  "source_sha256": "48bedf6f9d100ed91986b377cede77a7ade0e8d5210531c621e30a9af34bafbc",
+  "video_path": "data/ua-detrac-clean/source.mp4",
+  "camera_id": "ua-detrac-fixed-camera",
+  "crop": {"x": 0, "y": 0, "width": 960, "height": 540},
+  "planar_calibration": {
+    "method": "manual road-plane correspondences from lane and stop-line geometry",
+    "focal_length_px": 1050.0,
+    "image_points_px": [
+      [286.0, 95.0],
+      [674.0, 95.0],
+      [-80.0, 540.0],
+      [1040.0, 540.0]
+    ],
+    "ground_points_m": [
+      [-14.0, 70.0],
+      [14.0, 70.0],
+      [-24.0, 0.0],
+      [24.0, 0.0]
+    ],
+    "accuracy_note": "metric scale is an engineering estimate; validate against surveyed control points before speed enforcement use"
+  },
+  "detector": {
+    "weights": "models/yolo11m-seg.pt",
+    "weights_url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11m-seg.pt",
+    "classes": [2, 3, 5, 7],
+    "confidence": 0.10,
+    "image_size": 640,
+    "tracker": "configs/bytetrack_carom.yaml"
+  },
+  "processing": {
+    "max_frames": 240,
+    "suppress_preview_overlay": false,
+    "global_tracking": {
+      "max_lost_frames": 15,
+      "max_match_distance_m": 10.0,
+      "prediction_model": "constant_velocity_kalman",
+      "id_reuse": false
+    },
+    "trajectory_min_points": 8,
+    "route_cluster_threshold_m": 3.8,
+    "output_fps": 15.0
+  },
+  "display": {
+    "input_note": "CLEAN FIXED-CAMERA SOURCE · NO BURNED-IN LABELS"
+  },
+  "provenance": {
+    "vehicle_annotations": "local YOLO segmentation and ByteTrack output",
+    "world_coordinates": "configured pixel-to-ground planar homography",
+    "motion": "finite differences over Kalman-filtered ground positions",
+    "routes": "trajectory clustering and point-wise averaging",
+    "llm_runtime_calls": 0,
+    "manual_vehicle_state_fields": 0,
+    "source_note": "clean RGB pixels; dataset annotations are separate and are not read by the runtime"
+  }
+}

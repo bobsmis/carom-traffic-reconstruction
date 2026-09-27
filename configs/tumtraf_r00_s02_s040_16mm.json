@@ -1,0 +1,36 @@
+{
+  "scene_id": "tumtraf-r00-s02-s040-north-16mm-preview",
+  "dataset": "TUMTraf A9 Highway R00 S02 public preview",
+  "source_url": "https://innovation-mobility.com/wp-content/uploads/2022/01/r00_s02_480_300.mp4",
+  "source_sha256": "ca470644d6441ccea1ed5a34f5edbccce3e4a15af4e483829fbb16412068ec51",
+  "video_path": "data/tumtraf-r00-s02/source.mp4",
+  "calibration_path": "reference/tumtraf-devkit-calib/s040_camera_basler_north_16mm.json",
+  "calibration_source": "https://github.com/tum-traffic-dataset/tum-traffic-dataset-dev-kit",
+  "camera_id": "s040_camera_basler_north_16mm",
+  "crop": {"x": 0, "y": 0, "width": 480, "height": 300},
+  "native_camera_size": {"width": 1920, "height": 1200},
+  "ground_transform_key": "transformation_common_road_to_sensor_south_driving_direction",
+  "detector": {
+    "weights": "models/yolo11n-seg.pt",
+    "weights_url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11n-seg.pt",
+    "classes": [2, 3, 5, 7],
+    "confidence": 0.15,
+    "image_size": 640,
+    "tracker": "bytetrack.yaml"
+  },
+  "processing": {
+    "max_frames": 58,
+    "trajectory_min_points": 6,
+    "route_cluster_threshold_m": 3.5,
+    "output_fps": 10.0
+  },
+  "provenance": {
+    "vehicle_annotations": "local YOLO segmentation and ByteTrack output",
+    "world_coordinates": "official camera intrinsic/extrinsic calibration",
+    "motion": "finite differences over Kalman-filtered world positions",
+    "routes": "trajectory clustering and point-wise averaging",
+    "llm_runtime_calls": 0,
+    "manual_vehicle_state_fields": 0,
+    "source_preview_note": "The public preview contains upstream visualization overlays; the pipeline ignores their labels and runs independent local inference."
+  }
+}

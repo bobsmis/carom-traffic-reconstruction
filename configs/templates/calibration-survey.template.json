@@ -1,0 +1,16 @@
+{
+  "purpose": "Input checklist only. Replace with same-scene measured evidence before merging into planar_calibration.",
+  "image_coordinate_system": "Undistorted cropped source pixels, not resized display screenshots. K must use this same coordinate system.",
+  "world_coordinate_system": "Surveyed road plane Z=0; metres; X lateral, Y longitudinal. Record origin and handedness.",
+  "intrinsic_matrix": null,
+  "distortion": [0, 0, 0, 0, 0],
+  "distortion_note": "Zero here is the rectified-input contract, not a claim that the original lens has zero distortion.",
+  "image_points_px": [],
+  "ground_points_m": [],
+  "surveyed": false,
+  "check_points": {"image_points_px": [], "ground_points_m": []},
+  "max_control_rmse_px": 3.0,
+  "max_check_rmse_px": 3.0,
+  "evidence": {"intrinsic_measurement_file": null, "road_survey_file": null, "independent_check_file": null},
+  "requirements": ["At least 6 control pairs across all lanes and near/far depths", "At least 2 separate held-out pairs", "Never create check points by applying the fitted homography", "Attach independently surveyed lane polylines and measurement uncertainty"]
+}

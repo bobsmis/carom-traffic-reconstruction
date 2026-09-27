@@ -1,0 +1,1 @@
+{"schema":"carom-video-group-v1","name":"CARLA · cam01 · 6秒验证样例","kind":"carla","note":"既有短片算法输出，跨镜全局 ID 未通过长线验收。","channels":{"raw":{"file":"raw.mp4","label":"节点原始 RGB"},"annotation":{"file":"annotation.mp4","label":"全局 ID 标注"},"bev":{"file":"bev.mp4","label":"局部平面投影"},"extra":{"file":"extra.mp4","label":"SUMO 视觉轨迹回放"}}}

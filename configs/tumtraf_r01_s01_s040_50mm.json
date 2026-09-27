@@ -1,0 +1,77 @@
+{
+  "scene_id": "tumtraf-r01-s01-s040-north-50mm-preview",
+  "dataset": "TUMTraf A9 Highway Extended R01 S01 public preview",
+  "source_url": "https://innovation-mobility.com/wp-content/uploads/2022/05/r01_s01_s040_s050_cameras_combined_low_res_with_logo.mp4",
+  "source_sha256": "f436a6148dc97652fd7e09356c60663f7891a6305b908809a09bf8bf794a759c",
+  "video_path": "data/tumtraf-r01-s01-preview/source.mp4",
+  "calibration_path": "reference/tumtraf-devkit-calib/s040_camera_basler_north_50mm.json",
+  "calibration_source": "https://github.com/tum-traffic-dataset/tum-traffic-dataset-dev-kit",
+  "camera_id": "s040_camera_basler_north_50mm",
+  "crop": {"x": 480, "y": 0, "width": 480, "height": 300},
+  "native_camera_size": {"width": 1920, "height": 1200},
+  "ground_transform_key": "transformation_common_road_to_sensor_south_driving_direction",
+  "detector": {
+    "weights": "models/yolo11n-seg.pt",
+    "weights_url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11n-seg.pt",
+    "classes": [2, 3, 5, 7],
+    "confidence": 0.08,
+    "image_size": 640,
+    "tracker": "configs/bytetrack_carom.yaml"
+  },
+  "processing": {
+    "max_frames": 240,
+    "suppress_preview_overlay": true,
+    "global_tracking": {
+      "max_lost_frames": 12,
+      "max_match_distance_m": 7.0,
+      "prediction_model": "constant_velocity_kalman",
+      "id_reuse": false
+    },
+    "trajectory_min_points": 8,
+    "route_cluster_threshold_m": 4.5,
+    "output_fps": 12.5
+  },
+  "road_map": {
+    "image_path": "data/maps/a9_topdown_reference.jpg",
+    "world_control_points_m": [
+      [200.0, -9.0],
+      [200.0, 16.0],
+      [360.0, -9.0],
+      [360.0, 16.0]
+    ],
+    "image_control_points_px": [
+      [45.0, 80.0],
+      [335.0, 80.0],
+      [45.0, 1200.0],
+      [335.0, 1200.0]
+    ],
+    "drivable_polygon_px": [
+      [24.0, 0.0],
+      [346.0, 0.0],
+      [346.0, 1279.0],
+      [24.0, 1279.0]
+    ],
+    "lane_centerlines_px": [
+      [[83.0, 0.0], [83.0, 1279.0]],
+      [[145.0, 0.0], [145.0, 1279.0]],
+      [[199.0, 0.0], [199.0, 1279.0]],
+      [[251.0, 0.0], [251.0, 1279.0]],
+      [[309.0, 0.0], [309.0, 1279.0]]
+    ],
+    "visible_lane_count": 4,
+    "display": {
+      "rotate": "counterclockwise",
+      "crop_xywh": [0, 360, 1280, 360]
+    },
+    "visibility_image_top_px": 40
+  },
+  "provenance": {
+    "vehicle_annotations": "local YOLO segmentation and ByteTrack output",
+    "world_coordinates": "official camera intrinsic/extrinsic calibration",
+    "motion": "finite differences over Kalman-filtered world positions",
+    "routes": "trajectory clustering and point-wise averaging",
+    "llm_runtime_calls": 0,
+    "manual_vehicle_state_fields": 0,
+    "source_preview_note": "The public preview contains upstream visualization overlays; the pipeline ignores their labels and runs independent local inference."
+  }
+}

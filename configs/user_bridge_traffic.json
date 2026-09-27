@@ -1,0 +1,122 @@
+{
+  "scene_id": "user-bridge-bidirectional-traffic",
+  "dataset": "User-provided fixed overpass traffic video",
+  "source_url": "user-provided://1_1_car_bridge_traffic.mp4",
+  "source_sha256": "f6106e513f8f454097c1d7160ae495bb732597e110afaa6f39034358b2cfd4a8",
+  "video_path": "data/user-bridge/source.mp4",
+  "camera_id": "fixed-overpass-camera",
+  "crop": {"x": 0, "y": 0, "width": 1920, "height": 1080},
+  "planar_calibration": {
+    "method": "manual road-edge correspondences with 3.5 m lane-width scale",
+    "focal_length_px": 1700.0,
+    "image_points_px": [
+      [-235.0, 1000.0],
+      [1885.0, 1000.0],
+      [670.0, 320.0],
+      [1030.0, 320.0]
+    ],
+    "ground_points_m": [
+      [-14.0, 0.0],
+      [14.0, 0.0],
+      [-14.0, 100.0],
+      [14.0, 100.0]
+    ],
+    "accuracy_note": "metric scale is based on eight nominal 3.5 m lanes; replace with surveyed points for absolute speed validation"
+  },
+  "detector": {
+    "weights": "models/yolo11m-seg.pt",
+    "weights_url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11m-seg.pt",
+    "classes": [2, 3, 5, 7],
+    "confidence": 0.12,
+    "image_size": 768,
+    "tracker": "configs/bytetrack_carom.yaml"
+  },
+  "measurement_region": {
+    "enabled": true,
+    "ground_polygon_m": [[-18, 0], [18, 0], [18, 100], [-18, 100]],
+    "max_camera_ground_distance_m": 150.0,
+    "min_bbox_width_px": 24.0,
+    "min_bbox_height_px": 24.0,
+    "min_mask_area_px": 400.0,
+    "pixel_noise_sigma_px": 2.0,
+    "max_projection_sigma_m": 2.5,
+    "detector_context_px": 96,
+    "note": "Expanded nominal road interval y=0..100m, x=-18..18m covers eight nominal lanes plus lateral margin; camera-ground range <=150m. Conditional projection sigma cap relaxed to 2.5m for extended coverage, NOT higher accuracy. Pixel and silhouette quality gates retained."
+  },
+  "processing": {
+    "max_frames": 240,
+    "suppress_preview_overlay": false,
+    "global_tracking": {
+      "max_lost_frames": 18,
+      "max_match_distance_m": 8.0,
+      "prediction_model": "constant_velocity_kalman",
+      "id_reuse": false
+    },
+    "trajectory_min_points": 10,
+    "route_cluster_threshold_m": 3.2,
+    "output_fps": 30.0
+  },
+  "road_map": {
+    "image_path": "data/maps/user_eight_lane_topdown.png",
+    "world_control_points_m": [
+      [-14.0, 0.0],
+      [14.0, 0.0],
+      [-14.0, 100.0],
+      [14.0, 100.0]
+    ],
+    "image_control_points_px": [
+      [158.0, 1040.0],
+      [1274.0, 1040.0],
+      [158.0, 40.0],
+      [1274.0, 40.0]
+    ],
+    "drivable_polygon_px": [
+      [150.0, 0.0],
+      [1282.0, 0.0],
+      [1282.0, 1087.0],
+      [150.0, 1087.0]
+    ],
+    "lane_centerlines_px": [
+      [[227.75, 0.0], [227.75, 1087.0]],
+      [[367.25, 0.0], [367.25, 1087.0]],
+      [[506.75, 0.0], [506.75, 1087.0]],
+      [[646.25, 0.0], [646.25, 1087.0]],
+      [[785.75, 0.0], [785.75, 1087.0]],
+      [[925.25, 0.0], [925.25, 1087.0]],
+      [[1064.75, 0.0], [1064.75, 1087.0]],
+      [[1204.25, 0.0], [1204.25, 1087.0]]
+    ],
+    "lane_assignment": "nearest_centerline",
+    "geometry_render": "metric_lanes",
+    "lane_width_m": 3.5,
+    "longitudinal_axis": "y",
+    "lateral_axis": "x",
+    "lane_directions": [1, 1, 1, 1, -1, -1, -1, -1],
+    "vehicle_sprites": {
+      "car": "data/vehicle-icons/car.png",
+      "bus": "data/vehicle-icons/bus.png",
+      "truck": "data/vehicle-icons/truck.png"
+    },
+    "visible_lane_count": 8,
+    "display": {
+      "mode": "metric",
+      "world_extent_m": [-21.0, 21.0, -10.0, 195.0],
+      "padding_px": 6,
+      "rotate": "counterclockwise",
+      "crop_xywh": [0, 0, 1088, 1456]
+    },
+    "visibility_image_top_px": 255
+  },
+  "display": {
+    "input_note": "USER FIXED-CAMERA SOURCE · CLEAN PIXELS · LOCAL INFERENCE"
+  },
+  "provenance": {
+    "vehicle_annotations": "local YOLO segmentation and ByteTrack output",
+    "world_coordinates": "configured pixel-to-ground road-plane homography",
+    "motion": "finite differences over Kalman-filtered ground positions",
+    "routes": "trajectory clustering with persistent registered map-lane projection",
+    "llm_runtime_calls": 0,
+    "manual_vehicle_state_fields": 0,
+    "source_note": "user-provided clean fixed-camera video; no external detection labels are read"
+  }
+}

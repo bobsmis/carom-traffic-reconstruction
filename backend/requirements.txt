@@ -1,0 +1,11 @@
+fastapi==0.117.1
+uvicorn[standard]==0.37.0
+numpy==2.3.3
+pillow==11.3.0
+pytest==8.4.2
+httpx==0.28.1
+opencv-python==5.0.0.93
+scipy==1.18.1
+ultralytics==8.3.228
+lap==0.5.13
+imageio-ffmpeg==0.6.0

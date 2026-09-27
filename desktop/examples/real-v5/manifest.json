@@ -1,0 +1,1 @@
+{"schema":"carom-video-group-v1","name":"真实道路 · V5 · 8秒样例","kind":"real","note":"既有 V5 算法输出，标定精度未经验证。","channels":{"raw":{"file":"raw.mp4","label":"原始视频"},"annotation":{"file":"annotation.mp4","label":"算法标注"},"bev":{"file":"bev.mp4","label":"平面投影"}}}
